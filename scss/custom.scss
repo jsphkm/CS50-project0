@@ -1,0 +1,254 @@
+// overrides
+$body-bg: black;
+$body-color: #ccc;
+
+// global styles
+body {
+  padding-top: 56px;
+}
+
+.jumpfix {
+  padding-top: 70px; margin-top: -70px;
+}
+
+.navbar {
+  background-color: black;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+
+  .p0-social-list {
+    li {
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+
+        &:hover,
+        &:focus {
+          opacity: 1;
+          transition: opacity 0.2s;
+        }
+        
+        img {
+          width: 20px;
+          margin: 0 6px;
+        }
+      }
+    }
+    
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    .p0-social-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 20px 0;
+    }
+  }  
+}
+
+.sidenav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: -15px;
+  margin-right: -15px;
+  position: sticky;
+  top: 56px;
+
+  a {
+    display: inline-block;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+  }
+}
+
+.sidenav-link {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-weight: 500;
+}
+
+.p0-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.p0-highlight {
+  background-color: black;
+  border: 1px solid #333;
+}
+
+#getstarted-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 3px;
+  margin-top: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: background-color 0.5s;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: #005bdf;
+    transition: background-color 0.5s;
+  }
+}
+
+ul.row.p0-social {
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+
+  li {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    &:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    &:last-child {
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+      padding: 15px;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+      
+      img {
+        display: block;
+        width: 26px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .p0-title {
+    font-size: 3rem;
+  }
+}
+
+// Bootstrap and its default variables
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@include media-breakpoint-down(sm) {
+  .sidenav {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.03);
+  } 
+}
+
+pre {
+  color: #ccc;
+}
+
+%white {
+  color: white;
+}
+
+table {
+  &.table {
+    @extend %white;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %white;
+}
+
+hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+a.sidenav-link {
+  color: #bbb;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.alert-danger {
+  background-color: #28070a;
+  color: #f29ca4;
+
+  .alert-link {
+    color: #f9c2c7;
+  }
+}
+
+.alert-info {
+  background-color: #010c21;
+  color: #8cc4e0;
+
+  .alert-link {
+    color: #b6dce3;
+  }
+}
+
+.alert-warning {
+  background-color: #2f230d;
+  color: #d5d4b4;
+
+  .alert-link {
+    color: #f5f4d4;
+  }
+}
+
+.navbar {
+  .navbar-brand {
+    img {
+      width: 21px;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      display: inline-block;
+      vertical-align: text-top;
+
+      &:hover, &:focus {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+
+      &#focused {
+        opacity: 1;
+      }
+    }
+  }
+}

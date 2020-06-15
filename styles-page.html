@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./images/home-white.svg" alt="home icon">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./gettingstarted-page.html">Getting Started</a></li>
+        <li class="nav-item"><a class="nav-link" href="./bootstrap-page.html">Bootstrap</a></li>
+        <li class="nav-item active"><a class="nav-link" href="./styles-page.html">Styles</a></li>
+      </ul>
+      <hr />
+      <ul class="navbar-nav p0-social-list">
+          <li>
+              <a href="https://www.facebook.com/joseph.kim.524934" target="_blank">
+                  <img src="images/f_logo_RGB-White_58.png" alt="facebook icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://twitter.com/manythunks" target="_blank">
+                  <img src="images/Twitter - White Logo Only.svg" alt="twitter icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://www.instagram.com/jsphkm/" target="_blank">
+                  <img src="images/White logo.png" alt="instagram icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://github.com/jsphkm" target="_blank">
+                  <img src="images/GitHub-Mark-Light-32px.png" alt="github icon"/>
+              </a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <nav class="sidenav" aria-label="Side Nav">
+          <h4 class="sidenav-link">Table of Contents</h4>
+          <div><a class="sidenav-link" href="#navanchor-variables">Variables</a></div>
+          <div><a class="sidenav-link" href="#navanchor-customstyles">Custom Styles</a></div>
+          <div><a class="sidenav-link" href="#navanchor-mixins">Mixins</a></div>
+        </nav>
+      </div>
+      <main class="col-md-9 py-md-3 pl-md-5" role="main">
+        <h1 class="p0-title" style="padding-top: 70px; margin-top: -70px;">Styles</h1>
+        <p class="p0-subtitle">Customizing a Bootstrap website with Sass</p>
+        <hr>
+        <h2 id="navanchor-variables" class="jumpfix">Variables</h2>
+        <p>Bootstrap offers ways to override the built-in variables.  Keep in mind that the override must occur before importing Bootstrap.</p>
+        <pre class="p0-highlight">
+          <code>
+  $body-bg: #1a1a1a;
+  $body-color: #eee;
+
+  // Bootstrap and its default variables
+  @import "../node_modules/bootstrap/scss/bootstrap";</code>
+        </pre>
+        <div class="alert alert-info">
+          <h4 class="alert-heading">Variables</h4>
+          <p>All the variables can be found in <code>/node_modules/bootstrap/scss/_variables.scss</code></p>
+        </div>
+        <hr>
+        <h2 id="navanchor-customstyles" class="jumpfix">Custom Styles</h2>
+        <p>I've added more styles after the import to override them. I used this structure to set the dark color scheme.</p>
+        <pre class="p0-highlight">
+          <code>
+  // Override values
+  $body-bg: #1a1a1a;
+  $body-color: #eee;
+
+  // Global Styles
+  .navbar {
+    background-color: black;
+  }
+
+  // Bootstrap and its default variables
+  @import "../node_modules/bootstrap/scss/bootstrap";
+
+  // More styles here
+  .alert-info {
+    background-color: #010c21;
+    color: #8cc4e0;
+  
+    .alert-link {
+      color: #b6dce3;
+    }
+  } // etc...</code>
+        </pre>
+        <hr>
+        <h2 id="navanchor-mixins">Mixins</h2>
+        <p>Here's an example of a specific styling rules for the <code>.sidenav</code> for widths up to 767px.</p>
+        <pre class="p0-highlight">
+          <code>
+  @media (max-width: 767px) {
+    .sidenav {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 20px 0;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.03);
+    } 
+  }</code>
+        </pre>
+        <p>Alternatively, when using Bootstrap's media queries using mixins, it looks like this:</p>
+        <pre class="p0-highlight">
+          <code>
+  @include media-breakpoint-down(sm) {
+    .sidenav {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 20px 0;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.03);
+    } 
+  }</code>
+        </pre>
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Caution</h4>
+          <p>These type of rules must be written after the import statement.  Otherwise, you will get an error.</p>
+          <p>For example:</p>
+          <pre class="p0-highlight">
+            <code>
+  Error: Undefined mixin.</code>
+          </pre>
+        </div>
+        <div class="alert alert-info">
+          <h4 class="alert-heading">Media Breakpoints</h4>
+          <p>For more information regarding the built-in mixins for media breakpoints, check out this <a class="alert-link" target="_blank" href="https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints">documentation</a> from Boostrap.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

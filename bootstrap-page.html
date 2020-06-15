@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./images/home-white.svg" alt="home icon">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./gettingstarted-page.html">Getting Started</a></li>
+          <li class="nav-item active"><a class="nav-link" href="./bootstrap-page.html">Bootstrap</a></li>
+          <li class="nav-item"><a class="nav-link" href="./styles-page.html">Styles</a></li>
+        </ul>
+        <hr />
+        <ul class="navbar-nav p0-social-list">
+            <li>
+                <a href="https://www.facebook.com/joseph.kim.524934" target="_blank">
+                    <img src="images/f_logo_RGB-White_58.png" alt="facebook icon"/>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/manythunks" target="_blank">
+                    <img src="images/Twitter - White Logo Only.svg" alt="twitter icon"/>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/jsphkm/" target="_blank">
+                    <img src="images/White logo.png" alt="instagram icon"/>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/jsphkm" target="_blank">
+                    <img src="images/GitHub-Mark-Light-32px.png" alt="github icon"/>
+                </a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <nav class="sidenav" aria-label="Side Nav">
+          <h4 class="sidenav-link">Table of Contents</h4>
+          <div><a class="sidenav-link" href="#navanchor-layout">Layout</a></div>
+          <div><a class="sidenav-link" href="#navanchor-navigationbar">Navigation Bar</a></div>
+        </nav>
+      </div>
+      <main class="col-md-9 py-md-3 pl-md-5" role="main">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Notification!</strong> This website is built with Bootstrap's latest version at the time of writing, 4.5.0
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div>
+          <h1 class="p0-title">Bootstrap</h1>
+          <p class="p0-subtitle">Bootstrap is a CSS framework for building responsive mobile first websites.</p>
+          <hr>
+          <h2 id="navanchor-layout" class="jumpfix">Layout</h2>
+          <p>This website consists of the top navigation bar and the content <code>div</code> with a <code>.container</code> class.</p>
+          <p>The <code>.container</code> class has multiple <code>max-width</code> at each breakpoints.</p>
+          <pre class="p0-highlight"><code>
+  &lt;body&gt;
+    &lt;nav class="navbar fixed-top navbar-expand-sm navbar-dark"&gt;&lt;/nav&gt;
+    &lt;div class="container"&gt;&lt;/div&gt;
+  &lt;/body&gt;</code>
+          </pre>
+
+          <p>The <code>.container</code> element is a parent to these two child elements, left sidenav and the main container to the right.</p>
+
+          <pre class="p0-highlight"><code>
+  &lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-3"&gt;
+        &lt;nav class="sidenav" aria-label="Side Nav"&gt;&lt;/nav&gt;
+      &lt;/div&gt;
+      &lt;main class="col-md-9 py-md-3" role="main"&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+          </code></pre>
+
+          <p>The column widths are <code>col-md-3</code> and <code>col-md-9</code> for the sidenav and the main container, respectively.</p>
+          <p>For clarification, this table from the documentation shows the class prefixes and their widths fairly well:</p>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="text-center">Extra small<br />
+                  <small>&lt;576px</small>
+                </th>
+                <th class="text-center">Small<br />
+                  <small>&ge;576px</small>
+                </th>
+                <th class="text-center">Medium<br />
+                  <small>&ge;768px</small>
+                </th>
+                <th class="text-center">Large<br />
+                  <small>&ge;992px</small>
+                </th>
+                <th class="text-center">Extra Large<br />
+                  <small>&ge;1200px</small>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-nowrap" scope="row">Max container width</th>
+                <td>None (auto)</td>
+                <td>540px</td>
+                <td>720px</td>
+                <td>960px</td>
+                <td>1140px</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Class prefix</th>
+                <td><code>.col-</code></td>
+                <td><code>.col-sm-</code></td>
+                <td><code>.col-md-</code></td>
+                <td><code>.col-lg-</code></td>
+                <td><code>.col-xl-</code></td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row"># of columns</th>
+                <td colspan="5">12</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Gutter width</th>
+                <td colspan="5">30px (15px on each side of a column)</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Nestable</th>
+                <td colspan="5">Yes</td>
+              </tr>
+              <tr>
+                <th class="text-nowrap" scope="row">Column ordering</th>
+                <td colspan="5">Yes</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <p><code>.py-md-3</code> and <code>.pl-md-5</code> can be broken down like this <code>{property}{sides}-{breakpoint}-{size}</code></p>
+          <ul>
+            <li><code>p</code> - for classes that set <code>padding</code></li>
+            <li><code>y</code> - for classes that set both <code>*-top</code> and <code>*-bottom</code></li>
+            <li><code>l</code> - for classes that set <code>margin-left</code> or <code>padding-left</code></li>
+            <li><code>3</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer</code></li>
+            <li><code>5</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * 3</code></li>
+          </ul>
+          <div class="alert alert-info" role="alert ">Refer to the <a class="alert-link" href="https://getbootstrap.com/docs/4.0/utilities/spacing/#notation" target="_blank">Bootstrap documentation</a> for more detail</div>
+          <hr>
+          <h2 id="navanchor-navigationbar" class="jumpfix">Navigation Bar</h2>
+          <p>The navigation bar is responsive and collapses at 576px of viewport width, defined by <code>.navbar-expand-sm</code></p>
+          <nav class="navbar navbar-expand-sm navbar-dark">
+            <a class="navbar-brand" href="./index.html">
+              <img src="./images/home-white.svg" alt="home icon">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./gettingstarted-page.html">Getting Started</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="./bootstrap-page.html">Bootstrap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./styles-page.html">Styles</a></li>
+                </ul>
+            </div>
+          </nav>
+          <pre class="p0-highlight">
+            <code>
+  &lt;nav class="navbar navbar-expand-sm navbar-dark"&gt;
+    &lt;a class="navbar-brand" href="./index.html"&gt;
+      &lt;img src="./images/home-white.svg" alt="home icon"&gt;
+    &lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+        &lt;ul class="navbar-nav mr-auto"&gt;
+            &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="./index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="./gettingstarted-page.html"&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="nav-item active"&gt;&lt;a class="nav-link" href="./bootstrap-page.html"&gt;Bootstrap&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="./styles-page.html"&gt;Styles&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+            </code>
+          </pre>
+          <br />
+          <p>Since the nav bar is fixed to the top using <code>.fixed-top</code>, I needed to add <code>.padding-top</code> to the body to prevent overlap of content.</p>
+          <pre class="p0-highlight">
+            <code>
+  body {
+    padding-top: 56px;
+  }</code>
+          </pre>
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Warning</h4>
+            <p>Due to this padding on the body, jumping with anchor link didn't position the webpage correctly.  Applying this fix to all anchor headers solved the issue for me:</p>
+            <pre class="p0-highlight">
+              <code>
+    &lt;h1 style="padding-top: 70px; margin-top: -70px;"&gt;Bootstrap&lt;/h1&gt;</code>
+            </pre>
+            <hr>
+            <p>Refer to this <a class="alert-link" href="https://stackoverflow.com/a/11842865/6935886" target="_blank">question</a> on stackoverflow for more information</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

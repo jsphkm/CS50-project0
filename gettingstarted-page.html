@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+    <a class="navbar-brand" href="./index.html">
+      <img src="./images/home-white.svg" alt="home icon">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item active"><a class="nav-link" href="./gettingstarted-page.html">Getting Started</a></li>
+        <li class="nav-item"><a class="nav-link" href="./bootstrap-page.html">Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="./styles-page.html">Styles</a></li>
+      </ul>
+      <hr />
+      <ul class="navbar-nav p0-social-list">
+          <li>
+              <a href="https://www.facebook.com/joseph.kim.524934" target="_blank">
+                  <img src="images/f_logo_RGB-White_58.png" alt="facebook icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://twitter.com/manythunks" target="_blank">
+                  <img src="images/Twitter - White Logo Only.svg" alt="twitter icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://www.instagram.com/jsphkm/" target="_blank">
+                  <img src="images/White logo.png" alt="instagram icon"/>
+              </a>
+          </li>
+          <li>
+              <a href="https://github.com/jsphkm" target="_blank">
+                  <img src="images/GitHub-Mark-Light-32px.png" alt="github icon"/>
+              </a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <nav class="sidenav" aria-label="Side Nav">
+          <h4 class="sidenav-link">Table of Contents</h4>
+          <div><a class="sidenav-link" href="#navanchor-step0">Step 0</a></div>
+          <div><a class="sidenav-link" href="#navanchor-filestructure">File Structure</a></div>
+          <div><a class="sidenav-link" href="#navanchor-bootstrapsetup">Bootstrap Setup</a></div>
+        </nav>
+      </div>
+      <main class="col-md-9 py-md-3 pl-md-5" role="main">
+        <h1 class="p0-title">Getting Started</h1>
+        <p class="p0-subtitle">Configuring a static website with Bootstrap and SASS</p>
+        <hr>
+        <h2 id="navanchor-step0" class="jumpfix">Step 0</h2>
+        <p>First things first, it's always necessary to create <code>.gitignore</code> at the root of the project to prevent accidental uploads.</p>
+        <p>Go to <a href="https://www.toptal.com/developers/gitignore" target="_blank">gitignore.io</a> and type in all the necessary items.</p>
+        <p>For example, these are my go-tos:</p>
+        <ul>
+          <li>Git</li>
+          <li>Windows</li>
+          <li>macOS</li>
+          <li>VisualStudioCode</li>
+          <li>SublimeText</li>
+          <li>Node</li>
+        </ul>
+        <p>Copy and paste the result into your own <code>.gitignore</code> file.</p>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">.gitignore</h4>
+          <p>This file contains general rules about the files and folders for git to ignore before adding to stage, when preparing to push to remote repository.</p>
+          <hr>
+          <p>For more information, refer to the <a class="alert-link" href="https://git-scm.com/docs/gitignore">git documentation</a>.</p>
+        </div>
+        <hr>
+        <h2 id="navanchor-filestructure" class="jumpfix">File Structure</h2>
+        <p>This is how my files are structured:</p>
+        <pre class="p0-highlight">
+          <code>
+  thisproject/
+  ├── .gitignore
+  ├── node_modules
+  ├── dist
+  │   ├── styles.css
+  │   └── styles.css.map
+  ├── images
+  │   └── home.svg
+  ├── scss
+  │   └── custom.scss
+  ├── index.html
+  ├── page1.html
+  ├── page2.html
+  └── page3.html
+          </code>
+        </pre>
+        <p>One thing to note about this is that the <code>node_modules</code> folder will generally be ignored and <code>dist</code> folder will contain the compiled css stylesheets which are going to be referenced in the html.</p>
+        <p>Also, I've imported the Bootstrap styles in <code>node_modules</code> in my <code>custom.scss</code>, which means I can develop styles in the <code>custom.scss</code> and locally compile with Bootstrap core to <code>styles.css</code> in the <code>dist</code> folder.</p>
+        <hr>
+        <h2 id="navanchor-bootstrapsetup" class="jumpfix">Bootstrap Setup</h2>
+        <p>There are two ways to set up Bootstrap:</p>
+        <ol>
+          <li>CDN (<a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/" target="_blank">Documentation</a>)</li>
+          <li>NPM Package (<a href="https://www.npmjs.com/package/bootstrap" target="_blank">View source</a>)</li>
+        </ol>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Spoiler Alert</h4>
+          <p>I've eventually chosen the NPM package method as it is essentially the same as CDN while providing more flexibility.</p>
+        </div>
+        <hr>
+        <h3>CDN</h3>
+        <p>Copy and paste this stylesheet <code>&lt;link&gt;</code> before all the other stylesheets in the <code>&lt;head&gt;</code>.</p>
+        <pre class="p0-highlight">
+          <code>
+  &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"&gt;</code>
+        </pre>
+        <p>Make sure to include these scripts right before the closing <code>&lt;/body&gt;</code> tag.</p>
+        <pre class="p0-highlight">
+          <code>
+  &lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"&gt;&lt;/script&gt;
+  &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"&gt;&lt;/script&gt;</code>
+        </pre>
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Important</h4>
+          <p>These scripts will add jQuery, Popper.js, and Bootstrap's own JavaScript to the website, which are required for some features of Bootstrap, e.g. components.</p>
+        </div>
+        <hr>
+        <h3>NPM Package</h3>
+        <p>First, I navigated to the root level of the project directory and <code>npm init</code> to get npm set up.</p>
+        <pre class="p0-highlight">
+          <code>
+  cd ~/go/to/the/project
+  npm init -y</code>
+        </pre>
+        <div class="alert alert-warning" role="alert"><code>-y</code> flag will pass <code>yes</code> to all the initialization questions and lets you complete quickly.</div>
+        <p>Install bootstrap</p>
+        <pre class="p0-highlight">
+          <code>
+  npm install bootstrap</code>
+        </pre>
+        <p>Import the source Sass files into <code>custom.scss</code>, I've chosen option A here.</p>
+        <pre class="p0-highlight">
+          <code>
+  // Option A: Include all of Bootstrap
+  @import "../node_modules/bootstrap/scss/bootstrap";
+
+  
+  // Option B: Include parts of Bootstrap
+  // Required
+  @import "../node_modules/bootstrap/scss/functions";
+  @import "../node_modules/bootstrap/scss/variables";
+  @import "../node_modules/bootstrap/scss/mixins";
+  // Optional
+  @import "../node_modules/bootstrap/scss/reboot";
+  @import "../node_modules/bootstrap/scss/type";
+  @import "../node_modules/bootstrap/scss/images";
+  @import "../node_modules/bootstrap/scss/code";
+  @import "../node_modules/bootstrap/scss/grid";</code>
+        </pre>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Note</h4>
+          <p>The advantage of this method is the ability to access the core stylesheets when applying customizations, as opposed to overriding compiled styles in CDN.</p>
+          <p>This is the <a class="alert-link" href="https://getbootstrap.com/docs/4.1/getting-started/theming/" target="_blank">recommended way by Bootstrap</a>, but considering that Webpack and the build process is out of the scope for this project, I've chosen to build locally.</p>
+          <hr>
+          <p>Check out this <a class="alert-link" href="https://stackoverflow.com/a/30504532/6935886" target="_blank">question</a> on stackoverflow for some discussion regarding this.</p>
+        </div>
+        <p>Now run this command to build the stylesheets locally with <code>--watch</code> to listen for changes, note that save triggers a rebuild.</p>
+        <pre class="p0-highlight">
+          <code>
+  sass --watch scss/custom.scss:dist/styles.css</code>
+        </pre>
+      </main>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
