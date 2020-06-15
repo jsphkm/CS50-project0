@@ -53,6 +53,15 @@ body {
       flex-direction: row;
       justify-content: center;
       margin: 20px 0;
+
+      li {
+        a {
+          img {
+            margin: 0 20px;
+          }
+        }
+      }
+
     }
   }  
 }
