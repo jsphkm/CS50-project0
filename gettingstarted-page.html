@@ -176,6 +176,16 @@
           <code>
   sass --watch scss/custom.scss:dist/styles.css</code>
         </pre>
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Important!</h4>
+          <p>Since we are referencing the <code>css</code> file in the <code>dist</code>folder, we want to push the <code>dist</code> folder to remote by removing <code>dist</code> from <code>.gitignore</code></p>
+          <pre class="p0-highlight">
+            <code>
+  # Nuxt.js build / generate output
+  .nuxt
+  dist <--- delete this line, or this whole code block</code>
+          </pre>
+        </div>
       </main>
     </div>
   </div>
