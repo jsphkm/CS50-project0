@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="dist/styles.css">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="./index.html">
       <img src="./images/home-white.svg" alt="home icon">
     </a>
@@ -69,7 +69,7 @@
           <h2 id="navanchor-layout" class="jumpfix">Layout</h2>
           <p>This website consists of the top navigation bar and the content <code>div</code> with a <code>.container</code> class.</p>
           <p>The <code>.container</code> class has multiple <code>max-width</code> at each breakpoints.</p>
-          <pre class="p0-highlight"><code>
+          <pre><code>
   &lt;body&gt;
     &lt;nav class="navbar fixed-top navbar-expand-sm navbar-dark"&gt;&lt;/nav&gt;
     &lt;div class="container"&gt;&lt;/div&gt;
@@ -78,7 +78,7 @@
 
           <p>The <code>.container</code> element is a parent to these two child elements, left sidenav and the main container to the right.</p>
 
-          <pre class="p0-highlight"><code>
+          <pre><code>
   &lt;div class="container"&gt;
     &lt;div class="row"&gt;
       &lt;div class="col-md-3"&gt;
@@ -161,7 +161,7 @@
           <hr>
           <h2 id="navanchor-navigationbar" class="jumpfix">Navigation Bar</h2>
           <p>The navigation bar is responsive and collapses at 576px of viewport width, defined by <code>.navbar-expand-sm</code></p>
-          <pre class="p0-highlight">
+          <pre>
             <code>
   &lt;nav class="navbar navbar-expand-sm navbar-dark"&gt;
     &lt;a class="navbar-brand" href="./index.html"&gt;
@@ -187,7 +187,7 @@
           </pre>
           <br />
           <p>Since the nav bar is fixed to the top using <code>.fixed-top</code>, I needed to add <code>.padding-top</code> to the body to prevent overlap of content.</p>
-          <pre class="p0-highlight">
+          <pre>
             <code>
   body {
     padding-top: 56px;
@@ -196,7 +196,7 @@
           <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Warning</h4>
             <p>Due to this padding on the body, jumping with anchor link didn't position the webpage correctly.  Applying this fix to all anchor headers solved the issue for me:</p>
-            <pre class="p0-highlight">
+            <pre>
               <code>
     &lt;h1 style="padding-top: 70px; margin-top: -70px;"&gt;Bootstrap&lt;/h1&gt;</code>
             </pre>

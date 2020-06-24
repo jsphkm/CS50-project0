@@ -1,11 +1,196 @@
 // overrides
 $body-bg: black;
 $body-color: #ccc;
+$dark: black;
+$pre-color: #ccc;
+$alert-bg-level: 10;
+$alert-color-level: -6;
+$hr-border-color: rgba(255, 255, 255, 0.1);
+
+@mixin alert-variant($background, $border, $color) {
+  color: $color;
+  @include gradient-bg($background);
+  border-color: $border;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  .alert-link {
+    color: lighten($color, 10%);
+  }
+}
+
+// Option B: Include parts of Bootstrap
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+// Vendor
+@import "../node_modules/bootstrap/scss/vendor/rfs";
+
+// Deprecate
+@import "../node_modules/bootstrap/scss/mixins/deprecate";
+
+// Utilities
+@import "../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../node_modules/bootstrap/scss/mixins/hover";
+@import "../node_modules/bootstrap/scss/mixins/image";
+@import "../node_modules/bootstrap/scss/mixins/badge";
+@import "../node_modules/bootstrap/scss/mixins/resize";
+@import "../node_modules/bootstrap/scss/mixins/screen-reader";
+@import "../node_modules/bootstrap/scss/mixins/size";
+@import "../node_modules/bootstrap/scss/mixins/reset-text";
+@import "../node_modules/bootstrap/scss/mixins/text-emphasis";
+@import "../node_modules/bootstrap/scss/mixins/text-hide";
+@import "../node_modules/bootstrap/scss/mixins/text-truncate";
+@import "../node_modules/bootstrap/scss/mixins/visibility";
+
+// Components
+// @import "../node_modules/bootstrap/scss/mixins/alert";
+@import "../node_modules/bootstrap/scss/mixins/buttons";
+@import "../node_modules/bootstrap/scss/mixins/caret";
+@import "../node_modules/bootstrap/scss/mixins/pagination";
+@import "../node_modules/bootstrap/scss/mixins/lists";
+@import "../node_modules/bootstrap/scss/mixins/list-group";
+@import "../node_modules/bootstrap/scss/mixins/nav-divider";
+@import "../node_modules/bootstrap/scss/mixins/forms";
+@import "../node_modules/bootstrap/scss/mixins/table-row";
+
+// Skins
+@import "../node_modules/bootstrap/scss/mixins/background-variant";
+@import "../node_modules/bootstrap/scss/mixins/border-radius";
+@import "../node_modules/bootstrap/scss/mixins/box-shadow";
+@import "../node_modules/bootstrap/scss/mixins/gradients";
+@import "../node_modules/bootstrap/scss/mixins/transition";
+
+// Layout
+@import "../node_modules/bootstrap/scss/mixins/clearfix";
+@import "../node_modules/bootstrap/scss/mixins/grid-framework";
+@import "../node_modules/bootstrap/scss/mixins/grid";
+@import "../node_modules/bootstrap/scss/mixins/float";
+
+
+// Optional
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/input-group";
+@import "../node_modules/bootstrap/scss/custom-forms";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/jumbotron";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/media";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/tooltip";
+@import "../node_modules/bootstrap/scss/popover";
+@import "../node_modules/bootstrap/scss/carousel";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/print";
+
+@include media-breakpoint-down(sm) {
+  .sidenav {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.03);
+  } 
+}
+
+pre {
+  background-color: black;
+  border: 1px solid #333;
+}
+
+%white {
+  color: white;
+}
+
+table {
+  &.table {
+    @extend %white;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %white;
+}
+
+a.sidenav-link {
+  color: #bbb;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navbar {
+  .navbar-brand {
+    img {
+      width: 21px;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      display: inline-block;
+      vertical-align: text-top;
+
+      &:hover, &:focus {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+
+      &#focused {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.p0-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+#getstarted-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 3px;
+  margin-top: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: background-color 0.5s;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: #005bdf;
+    transition: background-color 0.5s;
+  }
+}
+
 
 // global styles
 body {
   padding-top: 56px;
-  background-color: black;
 }
 
 .jumpfix {
@@ -13,8 +198,7 @@ body {
 }
 
 .navbar {
-  background-color: black;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.5);
 
   .p0-social-list {
     li {
@@ -95,34 +279,6 @@ body {
   font-weight: 500;
 }
 
-.p0-subtitle {
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-.p0-highlight {
-  background-color: black;
-  border: 1px solid #333;
-}
-
-#getstarted-button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 10px;
-  border-radius: 3px;
-  margin-top: 5px;
-  display: inline-block;
-  margin-bottom: 20px;
-  transition: background-color 0.5s;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    background-color: #005bdf;
-    transition: background-color 0.5s;
-  }
-}
-
 ul.row.p0-social {
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -170,95 +326,5 @@ ul.row.p0-social {
 @media (min-width: 600px) {
   .p0-title {
     font-size: 3rem;
-  }
-}
-
-// Option A: Include all of Bootstrap
-@import "../node_modules/bootstrap/scss/bootstrap";
-
-@include media-breakpoint-down(sm) {
-  .sidenav {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 20px 0;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.03);
-  } 
-}
-
-pre {
-  color: #ccc;
-}
-
-%white {
-  color: white;
-}
-
-table {
-  &.table {
-    @extend %white;
-  }
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @extend %white;
-}
-
-hr {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-a.sidenav-link {
-  color: #bbb;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.alert-danger {
-  background-color: #28070a;
-  color: #f29ca4;
-
-  .alert-link {
-    color: #f9c2c7;
-  }
-}
-
-.alert-info {
-  background-color: #010c21;
-  color: #8cc4e0;
-
-  .alert-link {
-    color: #b6dce3;
-  }
-}
-
-.alert-warning {
-  background-color: #2f230d;
-  color: #d5d4b4;
-
-  .alert-link {
-    color: #f5f4d4;
-  }
-}
-
-.navbar {
-  .navbar-brand {
-    img {
-      width: 21px;
-      opacity: 0.5;
-      transition: opacity 0.2s;
-      display: inline-block;
-      vertical-align: text-top;
-
-      &:hover, &:focus {
-        opacity: 1;
-        transition: opacity 0.2s;
-      }
-
-      &#focused {
-        opacity: 1;
-      }
-    }
   }
 }

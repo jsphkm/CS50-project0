@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="dist/styles.css">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="./index.html">
       <img src="./images/home-white.svg" alt="home icon">
     </a>
@@ -82,7 +82,7 @@
         <hr>
         <h2 id="navanchor-filestructure" class="jumpfix">File Structure</h2>
         <p>This is how my files are structured:</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   thisproject/
   ├── .gitignore
@@ -114,12 +114,12 @@
         <hr>
         <h3>CDN</h3>
         <p>Copy and paste this stylesheet <code>&lt;link&gt;</code> before all the other stylesheets in the <code>&lt;head&gt;</code>.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"&gt;</code>
         </pre>
         <p>Make sure to include these scripts right before the closing <code>&lt;/body&gt;</code> tag.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   &lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"&gt;&lt;/script&gt;
   &lt;script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"&gt;&lt;/script&gt;
@@ -132,19 +132,19 @@
         <hr>
         <h3>NPM Package</h3>
         <p>First, I navigated to the root level of the project directory and <code>npm init</code> to get npm set up.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   cd ~/go/to/the/project
   npm init -y</code>
         </pre>
         <div class="alert alert-warning" role="alert"><code>-y</code> flag will pass <code>yes</code> to all the initialization questions and lets you complete quickly.</div>
         <p>Install bootstrap</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   npm install bootstrap</code>
         </pre>
         <p>Import the source Sass files into <code>custom.scss</code>, I've chosen option A here.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   // Option A: Include all of Bootstrap
   @import "../node_modules/bootstrap/scss/bootstrap";
@@ -170,14 +170,14 @@
           <p>Check out this <a class="alert-link" href="https://stackoverflow.com/a/30504532/6935886" target="_blank">question</a> on stackoverflow for some discussion regarding this.</p>
         </div>
         <p>Now run this command to build the stylesheets locally with <code>--watch</code> to listen for changes, note that save triggers a rebuild.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   sass --watch scss/custom.scss:dist/styles.css</code>
         </pre>
         <div class="alert alert-danger" role="alert">
           <h4 class="alert-heading">Important!</h4>
           <p>Since we are referencing the <code>css</code> file in the <code>dist</code> folder, we want to push the <code>dist</code> folder to remote by removing <code>dist</code> from <code>.gitignore</code> if it exists.</p>
-          <pre class="p0-highlight">
+          <pre>
             <code>
   # Nuxt.js build / generate output
   .nuxt

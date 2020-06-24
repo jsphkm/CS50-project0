@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="dist/styles.css">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="./index.html">
       <img src="./images/home-white.svg" alt="home icon">
     </a>
@@ -52,8 +52,8 @@
         <nav class="sidenav" aria-label="Side Nav">
           <h4 class="sidenav-link">Table of Contents</h4>
           <div><a class="sidenav-link" href="#navanchor-variables">Variables</a></div>
-          <div><a class="sidenav-link" href="#navanchor-customstyles">Custom Styles</a></div>
           <div><a class="sidenav-link" href="#navanchor-mixins">Mixins</a></div>
+          <div><a class="sidenav-link" href="#navanchor-customstyles">Custom Styles</a></div>
         </nav>
       </div>
       <main class="col-md-9 py-md-3 pl-md-5" role="main">
@@ -61,11 +61,15 @@
         <p class="p0-subtitle">Customizing a Bootstrap website with Sass</p>
         <hr>
         <h2 id="navanchor-variables" class="jumpfix">Variables</h2>
-        <p>Bootstrap offers ways to override the built-in variables.  Keep in mind that the override must occur before importing Bootstrap.</p>
-        <pre class="p0-highlight">
+        <p>Bootstrap offers ways to override the built-in variables.  Keep in mind that these overrides must occur before importing Bootstrap.</p>
+        <pre>
           <code>
-  $body-bg: #1a1a1a;
-  $body-color: #eee;
+  $body-bg: black;
+  $body-color: #ccc;
+  $dark: black;
+  $pre-color: #ccc;
+  $alert-bg-level: 10;
+  $alert-color-level: -6;
 
   // Bootstrap and its default variables
   @import "../node_modules/bootstrap/scss/bootstrap";</code>
@@ -74,24 +78,24 @@
           <h4 class="alert-heading">Variables</h4>
           <p>All the variables can be found in <code>/node_modules/bootstrap/scss/_variables.scss</code></p>
         </div>
-        <hr>
-        <h2 id="navanchor-customstyles" class="jumpfix">Custom Styles</h2>
-        <p>I've added more styles after the import to override them. I used this structure to set the dark color scheme.</p>
-        <pre class="p0-highlight">
+        <p>Variables are deeply integrated in Bootstrap.  Let's explore more in detail with <code>alert</code> as an example.</p>
+        <h4>Customize Alert - The Easy Way</h4>
+        <p>The easy way is to write the custom styles after the <code>@import</code> statement in the <code>custom.scss</code> file.</p>
+        <pre>
           <code>
-  // Override values
-  $body-bg: #1a1a1a;
-  $body-color: #eee;
-
-  // Global Styles
-  .navbar {
-    background-color: black;
-  }
-
   // Bootstrap and its default variables
   @import "../node_modules/bootstrap/scss/bootstrap";
 
-  // More styles here
+  // Custom styles here
+  .alert-danger {
+    background-color: #28070a;
+    color: #f29ca4;
+  
+    .alert-link {
+      color: #f9c2c7;
+    }
+  }
+  
   .alert-info {
     background-color: #010c21;
     color: #8cc4e0;
@@ -99,12 +103,223 @@
     .alert-link {
       color: #b6dce3;
     }
-  } // etc...</code>
+  }
+  
+  .alert-warning {
+    background-color: #2f230d;
+    color: #d5d4b4;
+  
+    .alert-link {
+      color: #f5f4d4;
+    }
+  }</code>
+        </pre>
+        <p>You'll have to write out each of the alerts.  The advantage of this method is being able to write the styles specifically.</p>
+        <h4>Customize Alert - Using Variables</h4>
+        <p>The other approach is to utilize the variables.</p>
+        <p>First, let's focus on the <code>background-color</code> and <code>color</code> properties.</p>
+        <p>In the <code>scss/_variables.scss</code> file, the default values for these two variables can be found.</p>
+        <pre>
+          <code>
+  $alert-bg-level:                    -10 !default;
+  $alert-border-level:                -9 !default;
+  $alert-color-level:                 6 !default;</code>
+        </pre>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Level</h4>
+          <p>Bootstrap uses level to modify the default color to generate brightness variations.</p>
+          <p>It ranges from -12 to 12, where -12 will brighten to white and 12 will darken to black.</p>
+        </div>
+        <p>These values are used in <code>scss/_alert.scss</code>.</p>
+        <pre>
+          <code>
+  // Alternate styles
+  //
+  // Generate contextual modifier classes for colorizing the alert.
+
+  @each $color, $value in $theme-colors {
+    .alert-#{$color} {
+      @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+    }
+  }</code>
+        </pre>
+        <p><code>theme-color-level()</code> will generate the color values, and pass them to <code>alert-variant</code> mixin which will generate each of the styles.</p>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">@each</h4>
+          <p>This block of code will loop through the values in <code>$theme-colors</code> and generate styles for each of them.</p>
+          <hr>
+          <p>Detailed information about <code>@each</code> can be found in the <a href="https://sass-lang.com/documentation/at-rules/control/each" target="_blank">sass documentation</a>.</p>
+        </div>
+        <p><code>alert-variant</code> mixin looks like this.</p>
+        <pre>
+          <code>
+  @mixin alert-variant($background, $border, $color) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+  
+    hr {
+      border-top-color: darken($border, 5%);
+    }
+  
+    .alert-link {
+      color: darken($color, 10%);
+    }
+  }</code>
+        </pre>
+        <p>The <code>$theme-colors</code> are in <code>scss/_variables.scss</code>:</p>
+        <pre>
+          <code>
+  $blue:    #007bff !default;
+  $indigo:  #6610f2 !default;
+  $purple:  #6f42c1 !default;
+  $pink:    #e83e8c !default;
+  $red:     #dc3545 !default;
+  $orange:  #fd7e14 !default;
+  $yellow:  #ffc107 !default;
+  $green:   #28a745 !default;
+  $teal:    #20c997 !default;
+  $cyan:    #17a2b8 !default;
+  // etc... more colors are defined in the actual file
+
+  $primary:       $blue !default;
+  $secondary:     $gray-600 !default;
+  $success:       $green !default;
+  $info:          $cyan !default;
+  $warning:       $yellow !default;
+  $danger:        $red !default;
+  $light:         $gray-100 !default;
+  $dark:          $gray-800 !default;
+  
+  $theme-colors: () !default;
+  // stylelint-disable-next-line scss/dollar-variable-default
+  $theme-colors: map-merge(
+    (
+      "primary":    $primary,
+      "secondary":  $secondary,
+      "success":    $success,
+      "info":       $info,
+      "warning":    $warning,
+      "danger":     $danger,
+      "light":      $light,
+      "dark":       $dark
+    ),
+    $theme-colors
+  );</code>
+        </pre>
+        <p>As you can see, each values in <code>$theme-colors</code> are mapped with a variable that are related to specific color variables.  This means that changing the color values will directly affect the <code>$each</code> block.</p>
+        <p>However, for this example, I only changed <code>$alert-bg-level</code> and <code>$alert-color-level</code> in <code>custom.scss</code>.</p>
+        <pre>
+          <code>
+  $alert-bg-level: 10;
+  $alert-color-level: -6;</code>
         </pre>
         <hr>
-        <h2 id="navanchor-mixins">Mixins</h2>
+        <h2 id="navanchor-mixins" class="jumpfix">Mixins</h2>
+        <p>To change the <code>.alert-link</code> styles from the previous example, it requires customizing a mixin.</p>
+        <p>Looking back at <code>scss/mixins/_alert.scss</code>, we can see the styling for <code>.alert-link</code>.</p>
+        <pre>
+          <code>
+  @mixin alert-variant($background, $border, $color) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+  
+    hr {
+      border-top-color: darken($border, 5%);
+    }
+  
+    .alert-link {
+      color: darken($color, 10%);
+    }
+  }</code>
+        </pre>
+        <p>To customize this specifically, the only way I was able to find was to copy and paste in <code>custom.scss</code> and make customizations to it before the import statements.</p>
+        <pre>
+          <code>
+  @mixin alert-variant($background, $border, $color) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+  
+    hr {
+      border-top-color: darken($border, 5%);
+    }
+  
+    .alert-link {
+      color: lighten($color, 10%);
+    }
+  }
+
+  // import Bootstrap here</code>
+        </pre>
+        <p>Then I needed to change the way I imported bootstrap so that I skipped from importing the <code>alert</code> mixin file.</p>
+        <pre>
+          <code>
+  // Option B: Include parts of Bootstrap
+
+  // Required
+  @import "../node_modules/bootstrap/scss/functions";
+  @import "../node_modules/bootstrap/scss/variables";
+  // Vendor
+  @import "../node_modules/bootstrap/scss/vendor/rfs";
+
+  // Deprecate
+  @import "../node_modules/bootstrap/scss/mixins/deprecate";
+
+  // Utilities
+  @import "../node_modules/bootstrap/scss/mixins/breakpoints";
+  @import "../node_modules/bootstrap/scss/mixins/hover";
+  @import "../node_modules/bootstrap/scss/mixins/image";
+  @import "../node_modules/bootstrap/scss/mixins/badge";
+  @import "../node_modules/bootstrap/scss/mixins/resize";
+  @import "../node_modules/bootstrap/scss/mixins/screen-reader";
+  @import "../node_modules/bootstrap/scss/mixins/size";
+  @import "../node_modules/bootstrap/scss/mixins/reset-text";
+  @import "../node_modules/bootstrap/scss/mixins/text-emphasis";
+  @import "../node_modules/bootstrap/scss/mixins/text-hide";
+  @import "../node_modules/bootstrap/scss/mixins/text-truncate";
+  @import "../node_modules/bootstrap/scss/mixins/visibility";
+
+  // Components
+  // @import "../node_modules/bootstrap/scss/mixins/alert"; &lt;-- skip this one
+  @import "../node_modules/bootstrap/scss/mixins/buttons";
+  @import "../node_modules/bootstrap/scss/mixins/caret";
+  @import "../node_modules/bootstrap/scss/mixins/pagination";
+  @import "../node_modules/bootstrap/scss/mixins/lists";
+  @import "../node_modules/bootstrap/scss/mixins/list-group";
+  @import "../node_modules/bootstrap/scss/mixins/nav-divider";
+  @import "../node_modules/bootstrap/scss/mixins/forms";
+  @import "../node_modules/bootstrap/scss/mixins/table-row";
+
+  // Skins
+  @import "../node_modules/bootstrap/scss/mixins/background-variant";
+  @import "../node_modules/bootstrap/scss/mixins/border-radius";
+  @import "../node_modules/bootstrap/scss/mixins/box-shadow";
+  @import "../node_modules/bootstrap/scss/mixins/gradients";
+  @import "../node_modules/bootstrap/scss/mixins/transition";
+
+  // Layout
+  @import "../node_modules/bootstrap/scss/mixins/clearfix";
+  @import "../node_modules/bootstrap/scss/mixins/grid-framework";
+  @import "../node_modules/bootstrap/scss/mixins/grid";
+  @import "../node_modules/bootstrap/scss/mixins/float";
+
+
+  // Optional
+  @import "../node_modules/bootstrap/scss/root";
+  @import "../node_modules/bootstrap/scss/reboot";
+  @import "../node_modules/bootstrap/scss/type";
+  // etc...
+          </code>
+        </pre>
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Know a better way?</h4>
+          <p>I agree that this looks ugly, so please let me know if you find a cleaner method.</p>
+        </div>
+        <h4>Responsive Breakpoints</h4>
         <p>Here's an example of a specific styling rules for the <code>.sidenav</code> for widths up to 767px.</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   @media (max-width: 767px) {
     .sidenav {
@@ -116,7 +331,7 @@
   }</code>
         </pre>
         <p>Alternatively, when using Bootstrap's media queries using mixins, it looks like this:</p>
-        <pre class="p0-highlight">
+        <pre>
           <code>
   @include media-breakpoint-down(sm) {
     .sidenav {
@@ -127,19 +342,76 @@
     } 
   }</code>
         </pre>
+        <p>The <code>media-breakpoint-down</code> mixin can be found in <code>scss/mixins/_breakpoints.scss</code>.</p>
+        <pre>
+          <code>
+  // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+  // Makes the @content apply to the given breakpoint and narrower.
+  @mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+    $max: breakpoint-max($name, $breakpoints);
+    @if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+          </code>
+        </pre>
         <div class="alert alert-danger" role="alert">
           <h4 class="alert-heading">Caution</h4>
-          <p>These type of rules must be written after the import statement.  Otherwise, you will get an error.</p>
+          <p>The rules that use mixins must be written after the import statement.  Otherwise, you will get an error.</p>
           <p>For example:</p>
-          <pre class="p0-highlight">
+          <pre>
             <code>
-  Error: Undefined mixin.</code>
+      Error: Undefined mixin.</code>
           </pre>
         </div>
         <div class="alert alert-info">
           <h4 class="alert-heading">Media Breakpoints</h4>
           <p>For more information regarding the built-in mixins for media breakpoints, check out this <a class="alert-link" target="_blank" href="https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints">documentation</a> from Boostrap.</p>
         </div>
+        <h2 id="navanchor-customstyles" class="jumpfix">Custom Styles</h2>
+        <p>I've added more styles after the import to override them. I used this structure to set the dark color scheme.</p>
+        <pre>
+          <code>
+  // Override values
+  $body-bg: black;
+  $body-color: #ccc;
+  // etc...
+
+  // Custom mixin goes here
+  @mixin alert-variant($background, $border, $color) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+  
+    hr {
+      border-top-color: darken($border, 5%);
+    }
+  
+    .alert-link {
+      color: lighten($color, 10%);
+    }
+  }
+  
+  // Bootstrap and its default variables
+  @import "../node_modules/bootstrap/scss/bootstrap";
+  
+  // Global Styles
+  .navbar {
+    background-color: black;
+  }
+
+  // More specific styles here
+  @media (min-width: 600px) {
+    .p0-title {
+      font-size: 3rem;
+    }
+  } // etc...</code>
+        </pre>
+        <hr>
       </main>
     </div>
   </div>
