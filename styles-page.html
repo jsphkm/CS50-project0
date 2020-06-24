@@ -52,6 +52,7 @@
         <nav class="sidenav" aria-label="Side Nav">
           <h4 class="sidenav-link">Table of Contents</h4>
           <div><a class="sidenav-link" href="#navanchor-variables">Variables</a></div>
+          <div><a class="sidenav-link" href="#navanchor-example">Example - Customize Alert</a></div>
           <div><a class="sidenav-link" href="#navanchor-mixins">Mixins</a></div>
           <div><a class="sidenav-link" href="#navanchor-customstyles">Custom Styles</a></div>
         </nav>
@@ -78,8 +79,10 @@
           <h4 class="alert-heading">Variables</h4>
           <p>All the variables can be found in <code>/node_modules/bootstrap/scss/_variables.scss</code></p>
         </div>
-        <p>Variables are deeply integrated in Bootstrap.  Let's explore more in detail with <code>alert</code> as an example.</p>
-        <h4>Customize Alert - The Easy Way</h4>
+        <hr>
+        <h2 id="navanchor-example" class="jumpfix">Example - Customize Alert</h2>
+        <p>Variables are deeply integrated in Bootstrap.  Let's explore more in detail with <code>alert</code> component as an example.</p>
+        <h4>The Easy Way</h4>
         <p>The easy way is to write the custom styles after the <code>@import</code> statement in the <code>custom.scss</code> file.</p>
         <pre>
           <code>
@@ -115,7 +118,7 @@
   }</code>
         </pre>
         <p>You'll have to write out each of the alerts.  The advantage of this method is being able to write the styles specifically.</p>
-        <h4>Customize Alert - Using Variables</h4>
+        <h4>Using Variables</h4>
         <p>The other approach is to utilize the variables.</p>
         <p>First, let's focus on the <code>background-color</code> and <code>color</code> properties.</p>
         <p>In the <code>scss/_variables.scss</code> file, the default values for these two variables can be found.</p>
@@ -143,7 +146,10 @@
     }
   }</code>
         </pre>
-        <p><code>theme-color-level()</code> will generate the color values, and pass them to <code>alert-variant</code> mixin which will generate each of the styles.</p>
+        <div class="alert alert-primary" role="alert">
+          <h4 class="alert-heading">Note</h4>
+          <p><code>theme-color-level()</code> will generate the color values, and pass them to <code>alert-variant</code> mixin which will generate each of the styles.</p>
+        </div>
         <div class="alert alert-info" role="alert">
           <h4 class="alert-heading">@each</h4>
           <p>This block of code will loop through the values in <code>$theme-colors</code> and generate styles for each of them.</p>
@@ -207,7 +213,7 @@
     $theme-colors
   );</code>
         </pre>
-        <p>As you can see, each values in <code>$theme-colors</code> are mapped with a variable that are related to specific color variables.  This means that changing the color values will directly affect the <code>$each</code> block.</p>
+        <p>As you can see, each values in <code>$theme-colors</code> are mapped with a variable that are related to specific color variables.  This means that changing the color values will directly affect the output of the <code>$each</code> block.</p>
         <p>However, for this example, I only changed <code>$alert-bg-level</code> and <code>$alert-color-level</code> in <code>custom.scss</code>.</p>
         <pre>
           <code>
@@ -330,7 +336,7 @@
     } 
   }</code>
         </pre>
-        <p>Alternatively, when using Bootstrap's media queries using mixins, it looks like this:</p>
+        <p>Alternatively, when using Bootstrap's media queries using mixins, it's used like this.</p>
         <pre>
           <code>
   @include media-breakpoint-down(sm) {
@@ -365,7 +371,7 @@
           <p>For example:</p>
           <pre>
             <code>
-      Error: Undefined mixin.</code>
+  Error: Undefined mixin.</code>
           </pre>
         </div>
         <div class="alert alert-info">
